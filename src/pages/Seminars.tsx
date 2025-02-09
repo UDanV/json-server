@@ -13,16 +13,19 @@ const Seminars: React.FC = () => {
     const [selectedSeminar, setSelectedSeminar] = useState<Seminar | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+    // Удаление семинара
     const handleDeleteClick = (id: number) => {
         setIsModalOpen(true);
         setSeminarToDelete(id);
     };
 
+    // Отмена удаления семинара
     const handleCancelEdit = () => {
         setIsEditModalOpen(false);
         setSelectedSeminar(null);
     };
 
+    // Обновление семинара
     const handleUpdate = (id: number) => {
         const seminar = seminars.find(seminar => seminar.id === id);
         if (seminar) {
@@ -36,6 +39,7 @@ const Seminars: React.FC = () => {
         setSeminarToDelete(null);
     };
 
+    // Логика сохранения семинара
     const handleSaveUpdate = async (updatedSeminar: Seminar) => {
         try {
             const response = await fetch(`http://localhost:3001/seminars/${updatedSeminar.id}`, {
@@ -59,6 +63,7 @@ const Seminars: React.FC = () => {
         }
     };
 
+    // Логика удаления семинара
     const handleDelete = async () => {
         try {
             const response = await fetch(`http://localhost:3001/seminars/${seminarToDelete}`, {
@@ -79,6 +84,7 @@ const Seminars: React.FC = () => {
         }
     }
 
+    // Запрос с ограничением на повторяющиеся запросы
     useEffect(() => {
         const fetchSeminars = async () => {
             if (isFetching) return;
