@@ -3,7 +3,7 @@
 ## Установка и запуск проекта:
 Клонировать репозиторий:
 
-    git clone https://github.com/UDanV/json-server-test
+    git clone https://github.com/UDanV/json-server
 
 Установить зависимости:
 
